@@ -80,7 +80,7 @@ class BaseExternalDbsource(models.Model):
 
     current_table = None
 
-    @api.multi
+    
     @api.depends('conn_string', 'password')
     def _compute_conn_string_full(self):
         for record in self:
@@ -98,12 +98,12 @@ class BaseExternalDbsource(models.Model):
 
     # Interface
 
-    @api.multi
+    
     def change_table(self, name):
         """ Change the table that is used for CRUD operations """
         self.current_table = name
 
-    @api.multi
+    
     def connection_close(self, connection):
         """ It closes the connection to the data source.
 
@@ -114,7 +114,7 @@ class BaseExternalDbsource(models.Model):
         method = self._get_adapter_method('connection_close')
         return method(connection)
 
-    @api.multi
+    
     @contextmanager
     def connection_open(self):
         """ It provides a context manager for the data source.
@@ -133,7 +133,7 @@ class BaseExternalDbsource(models.Model):
             except:
                 _logger.exception('Connection close failure.')
 
-    @api.multi
+    
     def execute(
         self, query=None, execute_params=None, metadata=False, **kwargs
     ):
@@ -176,7 +176,7 @@ class BaseExternalDbsource(models.Model):
         else:
             return rows
 
-    @api.multi
+    
     def connection_test(self):
         """ It tests the connection
 
@@ -199,7 +199,7 @@ class BaseExternalDbsource(models.Model):
             "Everything seems properly set up!",
         ))
 
-    @api.multi
+    
     def remote_browse(self, record_ids, *args, **kwargs):
         """ It browses for and returns the records from remote by ID
 
@@ -218,7 +218,7 @@ class BaseExternalDbsource(models.Model):
         method = self._get_adapter_method('remote_browse')
         return method(record_ids, *args, **kwargs)
 
-    @api.multi
+    
     def remote_create(self, vals, *args, **kwargs):
         """ It creates a record on the remote data source.
 
@@ -237,7 +237,7 @@ class BaseExternalDbsource(models.Model):
         method = self._get_adapter_method('remote_create')
         return method(vals, *args, **kwargs)
 
-    @api.multi
+    
     def remote_delete(self, record_ids, *args, **kwargs):
         """ It deletes records by ID on remote
 
@@ -256,7 +256,7 @@ class BaseExternalDbsource(models.Model):
         method = self._get_adapter_method('remote_delete')
         return method(record_ids, *args, **kwargs)
 
-    @api.multi
+    
     def remote_search(self, query, *args, **kwargs):
         """ It searches the remote for the query.
 
@@ -275,7 +275,7 @@ class BaseExternalDbsource(models.Model):
         method = self._get_adapter_method('remote_search')
         return method(query, *args, **kwargs)
 
-    @api.multi
+    
     def remote_update(self, record_ids, vals, *args, **kwargs):
         """ It updates the remote records with the vals
 
@@ -317,7 +317,7 @@ class BaseExternalDbsource(models.Model):
 
     # Compatibility & Private
 
-    @api.multi
+    
     def conn_open(self):
         """ It opens and returns a connection to the remote data source.
 

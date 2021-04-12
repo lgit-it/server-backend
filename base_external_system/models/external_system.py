@@ -81,7 +81,7 @@ class ExternalSystem(models.Model):
             (m, self.env[m]._description) for m in adapter._inherit_children
         ]
 
-    @api.multi
+    
     @api.constrains('fingerprint', 'ignore_fingerprint')
     def check_fingerprint_ignore_fingerprint(self):
         """Do not allow a blank fingerprint if not set to ignore."""
@@ -92,7 +92,7 @@ class ExternalSystem(models.Model):
                     'not checked.',
                 ))
 
-    @api.multi
+    
     @contextmanager
     def client(self):
         """Client object usable as a context manager to include destruction.
@@ -118,7 +118,7 @@ class ExternalSystem(models.Model):
             record.interface = interface
         return record
 
-    @api.multi
+    
     def action_test_connection(self):
         """Test the connection to the external system."""
         self.ensure_one()

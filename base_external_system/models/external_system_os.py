@@ -19,7 +19,7 @@ class ExternalSystemOs(models.Model):
 
     previous_dir = None
 
-    @api.multi
+    
     def external_get_client(self):
         """Return a usable client representing the remote system."""
         super(ExternalSystemOs, self).external_get_client()
@@ -28,7 +28,7 @@ class ExternalSystemOs(models.Model):
             os.chdir(self.system_id.remote_path)
         return os
 
-    @api.multi
+    
     def external_destroy_client(self, client):
         """Perform any logic necessary to destroy the client connection.
 

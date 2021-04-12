@@ -24,7 +24,7 @@ class ExternalSystemAdapter(models.AbstractModel):
         ondelete='cascade',
     )
 
-    @api.multi
+    
     @contextmanager
     def client(self):
         """Client object usable as a context manager to include destruction.
@@ -42,12 +42,12 @@ class ExternalSystemAdapter(models.AbstractModel):
         finally:
             self.external_destroy_client(client)
 
-    @api.multi
+    
     def external_get_client(self):
         """Return a usable client representing the remote system."""
         self.ensure_one()
 
-    @api.multi
+    
     def external_destroy_client(self, client):
         """Perform any logic necessary to destroy the client connection.
 
@@ -57,7 +57,7 @@ class ExternalSystemAdapter(models.AbstractModel):
         """
         self.ensure_one()
 
-    @api.multi
+    
     def external_test_connection(self):
         """Adapters should override this method, then call super if valid.
 
