@@ -46,8 +46,8 @@ class Task(models.Model):
         required=True,
         help='Column names must be valid "import_data" columns.'
     )
-    model_target = fields.Many2one('ir.model', string='Target object',
-                                   required=True)
+    model_target = fields.Many2one('ir.model', string='Target object', ondelete="set null")
+    
     exec_order = fields.Integer(
         string='Execution order',
         help="Defines the order to perform the import",
