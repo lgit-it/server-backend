@@ -33,20 +33,20 @@ class BaseExternalDbsource(models.Model):
     #PWD_STRING_DB2 = 'Password=%s;'
     PWD_STRING_DB2 = '%s'
 
-    @api.multi
+    
     def connection_close_db2(self, connection):
         return connection.close()
 
-    @api.multi
+    
     def connection_open_db2(self):
         return self._connection_open_sqlalchemy()
 
-    @api.multi
+    
     def connection_test_db2(self):
         return self._connection_test_sqlalchemy()
 
 
 
-    @api.multi
+    
     def execute_db2(self, sqlquery, sqlparams, metadata):
         return self._execute_sqlalchemy(sqlquery, sqlparams, metadata)
